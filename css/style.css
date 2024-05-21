@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input {
+    border: 1px solid #DEE2E6;
+    border-radius: 5px;
+
+}
+
+select {
+    border: 1px solid #DEE2E6;
+    border-radius: 5px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+
+body {
+    /* background-color: white; */
+    /* background: linear-gradient(#b92b27,#1565C0); */
+    font-size: 16px;
+    height: 100vh;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+
+
+    .main {
+
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin-top: 50px;
+        /* color: white; */
+
+        .box {
+            width: 800px;
+            height: 450px;
+            /* background-color: rgb(233, 193, 193); */
+            border: 1px solid #DEE2E6;
+            border-radius: 10px;
+
+
+
+
+
+
+            .content {
+                padding: 50px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 20px;
+
+                .frow {
+                    display: grid;
+                    grid-template-columns: 30% 30% 30%;
+                    gap: 5%;
+
+
+
+                    .firstname {
+                        display: flex;
+                        flex-direction: column;
+
+
+                    }
+
+                    .lastname {
+                        display: flex;
+                        flex-direction: column;
+
+                        #LastnameValid {
+                            visibility: hidden;
+                            color: red;
+                            font-weight: 380;
+                        }
+                    }
+
+                    .username {
+                        display: flex;
+                        flex-direction: column;
+
+                        #UsernameValid {
+                            visibility: hidden;
+                            color: red;
+                            font-weight: 380;
+                        }
+                    }
+
+                    input {
+                        height: 35px;
+                        width: 200px;
+                        font-size: 16px;
+                        padding: 10px;
+                    }
+                }
+
+                .srow {
+                    display: grid;
+                    grid-template-columns: 30% 30% 30%;
+                    gap: 5%;
+                    width: 100%;
+
+
+                    .city {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .state {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .country {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    input {
+                        height: 35px;
+                        font-size: 16px;
+                        padding: 10px;
+                    }
+
+                    select {
+                        height: 35px;
+                        font-size: 16px;
+                        width: 200px;
+
+                    }
+
+                }
+
+                .trow {
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                    gap: 5%;
+                    align-items: center;
+
+
+                }
+
+                .forow {
+                    button {
+                        padding: 10px 23px;
+                        font-size: 16px;
+                        background-color: #0d6efd;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+
+        table {
+            margin-top: 50px;
+            border: 1px solid black;
+            width: 100%;
+
+            th {
+                padding: 10px 30px;
+            }
+
+            th:nth-child(2) {
+                padding: 0 80px;
+            }
+
+        }
+    }
+}
+
+#FirstnameValid {
+    visibility: hidden;
+    color: red;
+    font-weight: 380;
+}
+
+#CityValid {
+    visibility: hidden;
+    color: red;
+    font-weight: 100;
+}
+
+#ZipValid {
+    visibility: hidden;
+    color: red;
+    font-weight: 100;
+}
+
+#Valid {
+    visibility: hidden;
+    color: red;
+    font-weight: 380;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+span {
+    color: red;
+    font-size: 0.83em;
+}
+
+.id {
+    display: flex;
+    flex-direction: column;
+}
+
+.id input{
+    height: 35px;
+    font-size: 16px;
+    width: 200px;
+    padding: 10px;
+}
+
+#IdValid{
+    visibility: hidden;
+    color: red;
+    font-weight: 380;
+}
+#Ddrop{
+    display: none;
+}
+.deletebox{
+    width: 500px;
+    height: 300px;
+    background-color: #EBEBEB;
+    position: absolute;
+    display: flex !important; 
+    visibility: hidden;
+    flex-direction: column;
+    margin: 200px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 10px;
+    /* transform: scale(0.1); */
+
+    .done{
+       
+        margin: auto;
+       
+    }
+
+    h3{
+        font-size: 30px;
+        font-weight: 400;
+
+    }
+
+    .bt{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        gap: 50px;
+
+        .bt1{
+            background-color: green;
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 10px;
+        }
+        .bt2{
+            background-color: red;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 10px;    
+            color: white;
+        }
+    }
+}
+
+
+
+
+
+
+
+/* <button onclick = "removeData(${user.id})">Delete</button> */
