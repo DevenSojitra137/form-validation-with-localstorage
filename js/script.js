@@ -306,7 +306,7 @@ const data2 = () => {
 const data3 = () => {
 
     var v1 = focus3.value
-    var r1 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+    var r1 = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
     if (!v1.match(r1)) {
 
         unamevalid.style.visibility = "visible";
@@ -570,6 +570,7 @@ const loadData = (id) => {
 const update = (id) => {
     
     var lt = JSON.parse(localStorage.getItem('data')) || [];
+    event.preventDefault();
     const arr =
     {
         id: focus4.value,
@@ -586,8 +587,146 @@ const update = (id) => {
         lt.splice(indexToRemove, 1,arr);
     }
 
-    localStorage.setItem('data', JSON.stringify(lt));
-    onloadPage();
+    const condition = () => {
+
+        var v1 = focus2.value
+        var r1 = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        var v2 = focus3.value
+        var r2 = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+
+        if (focus1.value == "") {
+            myobj.f1 = false;
+            data1();
+        } else {
+            myobj.f1 = true;
+        }
+
+        if (focus2.value == "") {
+            myobj.f2 = false;
+            data2();
+        }
+        else if (!v1.match(r1)) {
+            myobj.f2 = false;
+            data2();
+        }
+        else {
+            myobj.f2 = true;
+        }
+
+        if (focus3.value == "") {
+            myobj.f3 = false;
+            data3();
+        }
+        else if (!v2.match(r2)) {
+            myobj.f3 = false;
+            data3();
+        }
+        else {
+            myobj.f3 = true;
+        }
+
+        if (focus4.value == "") {
+            myobj.f4 = false;
+            data4();
+        } else {
+            myobj.f4 = true;
+        }
+
+        // if (focus5.value == "") {
+        //     data5();
+        // }
+
+        if (!focus6.checked) {
+            myobj.f6 = false;
+            data6();
+        }
+        else {
+            myobj.f6 = true;
+        }
+        if (countryInput.value === "") {
+            myobj.countryf = false;
+            onchnageCountry();
+        }
+        else {
+            myobj.countryf = true;
+        }
+        if (countryInput.value === "Select a country") {
+            myobj.countryf = false;
+            onchnageCountry();
+
+        } else {
+            myobj.countryf = true;
+        }
+
+        if (stateInput.value === "Select a state") {
+            myobj.statef = false;
+
+            onchnageState();
+        } else {
+            myobj.statef = true;
+        }
+        if (stateInput.value === "") {
+            myobj.statef = false;
+            onchnageState();
+
+        }
+        else {
+            myobj.statef = true;
+        }
+
+        if (cityInput.value === "Select a city") {
+            myobj.cityf = false;
+
+            onchnageCity();
+        } else {
+            myobj.cityf = true;
+        }
+        if (cityInput.value === "") {
+            myobj.cityf = false;
+            onchnageCity()
+        }
+        else {
+            myobj.cityf = true;
+        }
+    }
+
+    const keys = Object.values(myobj)
+    console.log(keys);
+
+    keys.forEach((k) => {
+        if (k == false) {
+            condition()
+        }
+    })
+
+    console.log(myobj.f1);
+
+
+    if (myobj.f1 == true && myobj.f2 == true && myobj.f3 == true && myobj.f4 == true && myobj.f6 == true && myobj.countryf == true && myobj.statef == true && myobj.cityf == true) {
+        local()
+        document.getElementById('myform').reset();
+        myobj.f1 = false
+        myobj.f2 = false
+        myobj.f3 = false
+        // myobj.f4 = false
+        myobj.f6 = false
+        myobj.countryf = false
+        myobj.statef = false
+        myobj.cityf = false
+
+        focus1.style = null;
+        focus2.style = null;
+        focus3.style = null;
+        focus6.style = null;
+        focus4.style = null;
+        countryInput.style = null;
+        stateInput.style = null;
+        cityInput.style = null;
+
+        localStorage.setItem('data', JSON.stringify(lt));
+        location.reload()
+        
+    }
 }
 
 const incid = () => {
@@ -745,15 +884,6 @@ const sub = () => {
         stateInput.style = null;
         cityInput.style = null;
     }
-
-
-
-
-
-
-
-
-
 }
 
 
