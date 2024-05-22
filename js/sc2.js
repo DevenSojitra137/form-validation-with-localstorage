@@ -1,29 +1,30 @@
-const Country = ['Select a country', 'India', 'Australia']
+const Country = ['Select a country', 'country1', 'country2']
 
 const state = [
     { country: "", state: 'Select a state' },
-    { country: "India", state: 'Gujarat' },
-    { country: "India", state: 'Maharashtra' },
-    { country: "India", state: 'MP' },
-   
-    { country: "Australia", state: 'Tasmania' },
-    { country: "Australia", state: 'Queensland' },
+    { country: "country1", state: 'state1' },
+    { country: "country1", state: 'state2' },
+    { country: "country1", state: 'state3' },
+    { country: "country2", state: 'state4' },
+    { country: "country2", state: 'state5' },
+    { country: "country2", state: 'state6' },
 ]
 
 
 const city = [
     { state: "", city: "Select a city" },
-    { state: "Gujarat", city: "Surat" },
-    { state: "Gujarat", city: "Vadodara" },
-    { state: "Maharashtra", city: "Mumbai" },
-    { state: "Maharashtra", city: "Pune" },
-    { state: "MP", city: "Indore" },
-    { state: "MP", city: "Bhopal" },
-    
-    { state: "Tasmania", city: "Hobart" },
-    { state: "Tasmania", city: "Burnie" },
-    { state: "Queensland", city: "Brisbane" },
-    { state: "Queensland", city: "Sunshine Coast" },
+    { state: "state1", city: "city1" },
+    { state: "state1", city: "city2" },
+    { state: "state2", city: "city3" },
+    { state: "state2", city: "city4" },
+    { state: "state3", city: "city5" },
+    { state: "state3", city: "city6" },
+    { state: "state4", city: "city7" },
+    { state: "state4", city: "city8" },
+    { state: "state5", city: "city9" },
+    { state: "state5", city: "city10" },
+    { state: "state6", city: "city11" },
+    { state: "state6", city: "city12" },
 
 ]
 
@@ -130,7 +131,6 @@ const onchnageState = () => {
     var selectedState = stateInput.value;
 
     city[0].state = selectedState;
-    console.log(selectedState);
     if (selectedState === "Select a state") {
         cityInput.disabled = true;
 
@@ -146,12 +146,8 @@ const onchnageState = () => {
         city.filter((country) => {
             if (country.state == selectedState) {
                 renderOption += `<option value="${country.city}">${country.city}</option>`
-                console.log(country.city);
             }
-            
         })
-        
-        console.log(renderOption);
         cityInput.innerHTML = renderOption
     }
 
@@ -708,11 +704,11 @@ const update = (id) => {
 
     if (myobj.f1 == true && myobj.f2 == true && myobj.f3 == true && myobj.f4 == true && myobj.f6 == true && myobj.countryf == true && myobj.statef == true && myobj.cityf == true) {
         local()
-        location.reload();
+        document.getElementById('myform').reset();
         myobj.f1 = false
         myobj.f2 = false
         myobj.f3 = false
-        myobj.f4 = false
+        // myobj.f4 = false
         myobj.f6 = false
         myobj.countryf = false
         myobj.statef = false
@@ -871,11 +867,11 @@ const sub = () => {
 
     if (myobj.f1 == true && myobj.f2 == true && myobj.f3 == true && myobj.f4 == true && myobj.f6 == true && myobj.countryf == true && myobj.statef == true && myobj.cityf == true) {
         local()
-        location.reload();
+        document.getElementById('myform').reset();
         myobj.f1 = false
         myobj.f2 = false
         myobj.f3 = false
-        myobj.f4 = false
+        // myobj.f4 = false
         myobj.f6 = false
         myobj.countryf = false
         myobj.statef = false
@@ -891,38 +887,3 @@ const sub = () => {
         cityInput.style = null;
     }
 }
-
-const search = () => {
-
-    var searchval = document.getElementById('searchval');
-    var filter = searchval.value.toLowerCase();
-    var table = document.getElementById('table');
-
-    var tr = table.getElementsByTagName('tr');
-    
-    
-
-    for (let i = 0; i < tr.length; i++) {
-        var td = tr[i].getElementsByTagName('td')[1];
-        
-        if(td){
-            let textval = td.textContent || td.innerHTML;
-            if(textval.toLowerCase().indexOf(filter) > -1){
-                tr[i].style.display = "";
-            }else{
-                tr[i].style.display = "none";
-            }
-        }
-        
-    }
-}
-
-
-
-
-
-
-
-
-
-
