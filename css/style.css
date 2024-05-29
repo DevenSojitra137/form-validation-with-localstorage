@@ -152,6 +152,7 @@ body {
                     align-items: center;
 
 
+
                 }
 
                 .forow {
@@ -297,6 +298,29 @@ span {
     }
 }
 
+#table{
+    text-align: center;
+}
+
+.update{
+    background-color: rgb(5, 161, 5);
+    border: none;
+    padding: 10px 25px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: white;
+}
+
+.delete{
+    background-color: #F03D45;
+    border: none;
+    padding: 10px 25px;
+    margin: 5px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: white;
+}
 
 
 
