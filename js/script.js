@@ -5,7 +5,7 @@ const state = [
     { country: "India", state: 'Gujarat' },
     { country: "India", state: 'Maharashtra' },
     { country: "India", state: 'MP' },
-   
+
     { country: "Australia", state: 'Tasmania' },
     { country: "Australia", state: 'Queensland' },
 ]
@@ -19,7 +19,7 @@ const city = [
     { state: "Maharashtra", city: "Pune" },
     { state: "MP", city: "Indore" },
     { state: "MP", city: "Bhopal" },
-    
+
     { state: "Tasmania", city: "Hobart" },
     { state: "Tasmania", city: "Burnie" },
     { state: "Queensland", city: "Brisbane" },
@@ -107,10 +107,11 @@ const onchnageCountry = () => {
 
         countryValid.textContent = "Please select a country";
         countryValid.style.visibility = "visible";
+        stateValid.style.visibility = "hidden";
         countryInput.style.border = "1px solid red";
-
-        stateInput.style.border = 'none'
-        cityInput.style.border = 'none'
+        console.log(countryInput.value);
+        stateInput.style = null
+        cityInput.style =  null
     }
     else if (countryInput.value === "") {
         console.log('$%^^&');
@@ -128,6 +129,7 @@ const onchnageCountry = () => {
 
 const onchnageState = () => {
     var selectedState = stateInput.value;
+    console.log("State change");
 
     city[0].state = selectedState;
     console.log(selectedState);
@@ -148,9 +150,9 @@ const onchnageState = () => {
                 renderOption += `<option value="${country.city}">${country.city}</option>`
                 console.log(country.city);
             }
-            
+
         })
-        
+
         console.log(renderOption);
         cityInput.innerHTML = renderOption
     }
@@ -160,6 +162,7 @@ const onchnageState = () => {
     if (stateInput.value === "Select a state") {
         stateValid.textContent = "Please select a state";
         stateValid.style.visibility = "visible";
+        cityValid.style.visibility = "hidden";
         stateInput.style.border = "1px solid red";
         cityInput.style.border = 'none'
     }
@@ -198,82 +201,6 @@ const onchnageCity = () => {
         cityInput.style.outline = "none";
     }
 }
-
-// const focusOn1 = () => {
-
-
-//         focus1.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-//         focus1.style.bordercolor = "#86b7fe";
-
-
-
-
-// }
-
-// const focusOn2 = () => {
-
-//     if (focus2.focus) {
-//         focus2.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-//         focus2.style.bordercolor = "#86b7fe";
-//     }
-// }
-
-// const focusOn3 = () => {
-
-//     if (focus3.focus) {
-//         focus3.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-//         focus3.style.bordercolor = "#86b7fe";
-//     }
-// }
-
-// const focusOn4 = () => {
-
-//     if (focus4.focus) {
-//         focus4.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-//         focus4.style.bordercolor = "#86b7fe";
-//     }
-// }
-
-// const focusOn5 = () => {
-
-//     if (focus5.focus) {
-//         focus5.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-//         focus5.style.bordercolor = "#86b7fe";
-//     }
-// }
-
-// const focusOn6 = () => {
-
-//     if (focus6.focus) {
-//         focus6.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-//         focus6.style.bordercolor = "#86b7fe";
-//     }
-// }
-
-const focusOn = (element) => {
-    console.log(element);
-    var focus = document.getElementById(element);
-
-    focus.style.boxShadow = "0 0 0 .25rem rgba(13,110,253,.25)";
-    focus.style.borderColor = "#86b7fe";
-}
-
-
-
-
-
-const focusOut = (element) => {
-
-    console.log(element);
-    var focus = document.getElementById(element);
-
-    focus.style.boxShadow = "none";
-    focus.style.borderColor = "none";
-}
-
-
-
-
 
 const validateInput = (input, validationMessageElement) => {
     if (input.value === "") {
@@ -501,8 +428,8 @@ const createTableData = (user) => {
             <td>${user.state}</td>
             <td>${user.city}</td>
             <td>
-                <button type="button" onclick = "loadData(${user.id})">Update</button>
-                <button type="button" onclick = "Ddrop(${user.id})">Delete</button>
+                <button type="button" onclick = "loadData(${user.id})" class= "update">Update</button>
+                <button type="button" onclick = "Ddrop(${user.id})" class= "delete">Delete</button>
             </td>
         </tr>
         `;
@@ -553,20 +480,37 @@ const loadData = (id) => {
     var lt = JSON.parse(localStorage.getItem('data')) || [];
     console.log(lt);
     let indexToUpdate = lt.findIndex(obj => obj.id == id);
+    console.log(lt[indexToUpdate]);
     focus1.value = lt[indexToUpdate].name;
+    data1()
     focus2.value = lt[indexToUpdate].email;
+    data2()
     focus3.value = lt[indexToUpdate].mobilenumber;
+    data3();
     focus4.value = lt[indexToUpdate].id;
+    data4()
     countryInput.value = lt[indexToUpdate].country;
+    onchnageCountry()
     stateInput.value = lt[indexToUpdate].state;
+    onchnageState()
+    console.log(stateInput.value);
     cityInput.value = lt[indexToUpdate].city;
+    onchnageCity()
+    focus6.checked = true
+    data6()
+    focus4.disabled = true
+
+    console.log(myobj)
 
 
-    var inner = `<button id="btt" onclick="update(${id})">update</button>`
+    var inner = `<button id="btt" onclick="update(${id})  ">update</button>`
     myid.innerHTML = inner;
 
-    stateInput.disabled = false;
-    cityInput.disabled = false;
+    console.log(myid);
+
+
+
+
 
 
 }
@@ -586,10 +530,9 @@ const update = (id) => {
         city: cityInput.value
     }
 
-    let indexToRemove = lt.findIndex(obj => obj.id == id);
-    if (indexToRemove !== -1) {
-        lt.splice(indexToRemove, 1, arr);
-    }
+
+
+    console.log(lt);
 
     const condition = () => {
 
@@ -647,13 +590,6 @@ const update = (id) => {
         else {
             myobj.f6 = true;
         }
-        if (countryInput.value === "") {
-            myobj.countryf = false;
-            onchnageCountry();
-        }
-        else {
-            myobj.countryf = true;
-        }
         if (countryInput.value === "Select a country") {
             myobj.countryf = false;
             onchnageCountry();
@@ -669,33 +605,20 @@ const update = (id) => {
         } else {
             myobj.statef = true;
         }
-        if (stateInput.value === "") {
-            myobj.statef = false;
-            onchnageState();
-
-        }
-        else {
-            myobj.statef = true;
-        }
 
         if (cityInput.value === "Select a city") {
             myobj.cityf = false;
-
             onchnageCity();
+            console.log(myobj.cityf);
+
         } else {
             myobj.cityf = true;
         }
-        if (cityInput.value === "") {
-            myobj.cityf = false;
-            onchnageCity()
-        }
-        else {
-            myobj.cityf = true;
-        }
+
     }
 
     const keys = Object.values(myobj)
-    console.log(keys);
+    console.log(myobj.cityf);
 
     keys.forEach((k) => {
         if (k == false) {
@@ -703,20 +626,18 @@ const update = (id) => {
         }
     })
 
-    console.log(myobj.f1);
-
-
     if (myobj.f1 == true && myobj.f2 == true && myobj.f3 == true && myobj.f4 == true && myobj.f6 == true && myobj.countryf == true && myobj.statef == true && myobj.cityf == true) {
-        local()
-        location.reload();
-        myobj.f1 = false
-        myobj.f2 = false
-        myobj.f3 = false
-        myobj.f4 = false
-        myobj.f6 = false
-        myobj.countryf = false
-        myobj.statef = false
-        myobj.cityf = false
+        // local()
+        // location.reload();
+        myobj.f1 = false;
+        myobj.f2 = false;
+        myobj.f3 = false;
+        myobj.f4 = false;
+        myobj.f6 = false;
+        myobj.countryf = false;
+        myobj.statef = false;
+        myobj.cityf = false;
+
 
         focus1.style = null;
         focus2.style = null;
@@ -727,8 +648,13 @@ const update = (id) => {
         stateInput.style = null;
         cityInput.style = null;
 
+        let indexToRemove = lt.findIndex(obj => obj.id == id);
+        if (indexToRemove !== -1) {
+            lt.splice(indexToRemove, 1, arr);
+        }
+
         localStorage.setItem('data', JSON.stringify(lt));
-        location.reload()
+        location.reload();
 
     }
 }
@@ -738,8 +664,6 @@ const incid = () => {
     console.log(id);
     event.preventDefault()
 }
-
-
 
 const myobj = {
     f1: false,
@@ -881,6 +805,8 @@ const sub = () => {
         myobj.statef = false
         myobj.cityf = false
 
+        console.log(myobj.f1);
+
         focus1.style = null;
         focus2.style = null;
         focus3.style = null;
@@ -890,30 +816,34 @@ const sub = () => {
         stateInput.style = null;
         cityInput.style = null;
     }
+
+    console.log(stateInput.value);
+    console.log(cityInput.value);
 }
 
 const search = () => {
 
+    event.preventDefault()
     var searchval = document.getElementById('searchval');
     var filter = searchval.value.toLowerCase();
     var table = document.getElementById('table');
 
     var tr = table.getElementsByTagName('tr');
-    
-    
+
+
 
     for (let i = 0; i < tr.length; i++) {
         var td = tr[i].getElementsByTagName('td')[1];
-        
-        if(td){
+
+        if (td) {
             let textval = td.textContent || td.innerHTML;
-            if(textval.toLowerCase().indexOf(filter) > -1){
+            if (textval.toLowerCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
-            }else{
+            } else {
                 tr[i].style.display = "none";
             }
         }
-        
+
     }
 }
 
